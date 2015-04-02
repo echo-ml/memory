@@ -14,19 +14,36 @@ using echo::concept::allocator;
 // static_allocator //
 //////////////////////
 
-CONCEPT(static_allocator) {
-  template <class T>
-  auto require(T alloc)->valid<has_type<typename T::template buffer_type<1>>>;
+namespace detail { namespace concept {
+
+struct StaticAllocator : Concept {
+  template<class T>
+  auto require(T &&)->list<
+      valid<typename T::template buffer_type<1>>()
+  >;
 };
+
+} //end namespace concept
+} //end namespace detail
+
+template<class T>
+constexpr bool static_allocator() {
+  return models<detail::concept::StaticAllocator, T>();
+}
 
 ////////////////////
 // memory_backend //
 ////////////////////
 
-CONCEPT(memory_backend) {
-  template <class T>
-  auto require(T)->valid<is_true_c<allocator<T>() || static_allocator<T>()> >;
-};
+template<class T>
+constexpr bool memory_backend() {
+  return static_allocator<T>() || allocator<T>();
+}
+
+// CONCEPT(memory_backend) {
+//   template <class T>
+//   auto require(T)->valid<is_true_c<allocator<T>() || static_allocator<T>()> >;
+// };
 
 }  // end namespace concept
 

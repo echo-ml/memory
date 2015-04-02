@@ -9,34 +9,33 @@ namespace memory {
 // StaticMemoryBuffer //
 ////////////////////////
 
-template <class Scalar, int NumElements, int Alignment>
+template <class T, int NumElements, int Alignment>
 class StaticMemoryBuffer {
   static_assert(NumElements != NumElements,
                 "Buffer with given alignment is not supported");
 };
 
-template <class Scalar, int NumElements>
-class StaticMemoryBuffer<Scalar, NumElements, 0> {
+template <class T, int NumElements>
+class StaticMemoryBuffer<T, NumElements, 0> {
  public:
-  Scalar* data() { return _data; }
-  const Scalar* data() const { return _data; }
-  const Scalar* const_data() const { return _data; }
+  T* data() { return _data; }
+  const T* data() const { return _data; }
+  const T* const_data() const { return _data; }
 
  private:
-  Scalar _data[NumElements];
+  T _data[NumElements];
 };
 
-#define MAKE_STATIC_MEMORY_BUFFER(ALIGNMENT)               \
-  template <class Scalar, int NumElements>                 \
-  class alignas(ALIGNMENT)                                 \
-      StaticMemoryBuffer<Scalar, NumElements, ALIGNMENT> { \
-   public:                                                 \
-    Scalar* data() { return _data; }                       \
-    const Scalar* data() const { return _data; }           \
-    const Scalar* const_data() const { return _data; }     \
-                                                           \
-   private:                                                \
-    Scalar _data[NumElements];                             \
+#define MAKE_STATIC_MEMORY_BUFFER(ALIGNMENT)                               \
+  template <class T, int NumElements>                                      \
+  class alignas(ALIGNMENT) StaticMemoryBuffer<T, NumElements, ALIGNMENT> { \
+   public:                                                                 \
+    T* data() { return _data; }                                            \
+    const T* data() const { return _data; }                                \
+    const T* const_data() const { return _data; }                          \
+                                                                           \
+   private:                                                                \
+    T _data[NumElements];                                                  \
   };
 
 MAKE_STATIC_MEMORY_BUFFER(1)
@@ -50,14 +49,15 @@ MAKE_STATIC_MEMORY_BUFFER(128)
 // StaticAllocator //
 /////////////////////
 
-template <class Scalar, int Alignment = 0>
+template <class T, int Alignment = 0>
 struct StaticAllocator {
+  using value_type = T;
   template <int NumElements>
-  using buffer_type = StaticMemoryBuffer<Scalar, NumElements, Alignment>;
+  using buffer_type = StaticMemoryBuffer<T, NumElements, Alignment>;
 };
 
-template <class Scalar>
-using SimdStaticAllocator = StaticAllocator<Scalar, ECHO_SIMD_ALIGNMENT>;
+template <class T>
+using SimdStaticAllocator = StaticAllocator<T, ECHO_SIMD_ALIGNMENT>;
 
 }  // end namespcae memory
 }  // end namespace echo

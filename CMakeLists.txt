@@ -12,6 +12,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 file(GLOB headers
   RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
   "${CMAKE_CURRENT_SOURCE_DIR}/include/echo/*.h"
+)
+
+file(GLOB memory-headers
+  RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
   "${CMAKE_CURRENT_SOURCE_DIR}/include/echo/memory/*.h"
 )
 
@@ -22,5 +26,6 @@ file(GLOB unittests
 
 
 install(FILES ${headers} DESTINATION include/echo)
+install(FILES ${memory-headers} DESTINATION include/echo/memory)
 
 add_catch_test(memory-test ${unittests})
