@@ -1,6 +1,6 @@
 #pragma once
 
-#include <echo/memory/standard_memory_backend_tag.h>
+#include <echo/memory/memory_backend_tag.h>
 #include <echo/concept/query_type.h>
 #include <echo/concept2.h>
 
@@ -26,7 +26,7 @@ template <class T>
 using memory_backend_tag = typename std::conditional<
     detail::memory_backend_traits::has_memory_backend_tag<T>(),
     detail::memory_backend_traits::query_memory_backend_tag<T>,
-    memory::standard_memory_backend_tag>::type;
+    echo::memory::memory_backend_tag>::type;
 
 ////////////////
 // value_type //

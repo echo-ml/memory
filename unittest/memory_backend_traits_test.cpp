@@ -16,7 +16,7 @@ TEST_CASE("memory_backend_traits") {
   REQUIRE(std::is_same<my_memory_backend_tag,
                        memory_backend_traits::memory_backend_tag<MyAlloc>>());
   REQUIRE(std::is_same<
-      standard_memory_backend_tag,
+      memory_backend_tag,
       memory_backend_traits::memory_backend_tag<SimdAllocator<double>>>());
 
   REQUIRE(std::is_same<double, memory_backend_traits::pointer<MyAlloc>>());
