@@ -18,12 +18,10 @@ using echo::concept::allocator;
 
 namespace detail {
 namespace concept {
-
 struct StaticAllocator : Concept {
   template <class T>
   auto require(T && ) -> list<valid<typename T::template buffer_type<1>>()>;
 };
-
 }  // end namespace concept
 }  // end namespace detail
 
@@ -47,15 +45,14 @@ constexpr bool memory_backend_tag() {
 
 namespace detail {
 namespace concept {
-
 struct MemoryBackend : Concept {
   template <class T>
   auto require(T && ) -> list<
       static_allocator<T>() || allocator<T>(),
       memory_backend_tag<memory_backend_traits::memory_backend_tag<T>>()>;
 };
-}
-}
+}  // namespace concept
+}  // namespace detail
 
 template <class T>
 constexpr bool memory_backend() {
@@ -68,7 +65,6 @@ constexpr bool memory_backend() {
 
 namespace detail {
 namespace concept {
-
 struct AlgorithmIteratorCopy : Concept {
   template <class SourceIteratorFirst, class SourceIteratorLast,
             class DestinationIteratorFirst>
@@ -82,8 +78,8 @@ struct AlgorithmIteratorCopy : Concept {
               echo::concept::output_iterator<DestinationIteratorFirst>(),
               valid<decltype(*destination_first = *source_first)>()>;
 };
-}
-}
+}  // namespace concept
+}  // namespace detail
 
 template <class SourceIteratorFirst, class SourceIteratorLast,
           class DestinationIteratorFirst>
@@ -98,7 +94,6 @@ constexpr bool algorithm_iterator_copy() {
 
 namespace detail {
 namespace concept {
-
 struct AlgorithmIteratorMemcpyableCopy : Concept {
   template <class SourceIteratorFirst, class SourceIteratorLast,
             class DestinationIteratorFirst>
@@ -119,8 +114,8 @@ struct AlgorithmIteratorMemcpyableCopy : Concept {
               std::is_trivially_copyable<
                   iterator_traits::value_type<SourceIteratorFirst>>::value>;
 };
-}
-}
+}  // namespace concept
+}  // namespace detail
 
 template <class SourceIteratorFirst, class SourceIteratorLast,
           class DestinationIteratorFirst>

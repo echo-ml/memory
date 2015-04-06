@@ -8,7 +8,6 @@
 
 namespace echo {
 namespace memory {
-
 template <class T>
 using SimdAllocator =
     boost::alignment::aligned_allocator<T, ECHO_SIMD_ALIGNMENT>;

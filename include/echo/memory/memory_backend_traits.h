@@ -9,14 +9,13 @@ namespace memory_backend_traits {
 
 namespace detail {
 namespace memory_backend_traits {
-
 ECHO_MAKE_TYPE_QUERIER(memory_backend_tag)
 
 ECHO_MAKE_TYPE_QUERIER(pointer)
 
 ECHO_MAKE_TYPE_QUERIER(const_pointer)
-}
-}
+}  // namespace memory_backend_traits
+}  // namespace detail
 
 ////////////////////////
 // memory_backend_tag //
@@ -54,5 +53,5 @@ using const_pointer = typename std::conditional<
     detail::memory_backend_traits::has_const_pointer<T>(),
     detail::memory_backend_traits::query_const_pointer<T>,
     const value_type<T>*>::type;
-}
-}
+}  // namespace memory_backend_traits
+}  // namespace echo

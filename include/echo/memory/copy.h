@@ -120,5 +120,5 @@ void copy(SourceMemoryBackendTag, IteratorSourceFirst source_first,
   copy(SourceMemoryBackendTag(), source_first, source_last,
        DestinationMemoryBackendTag(), destination_first, overload::selector());
 }
-}
-}
+}  // namespace memory
+}  // namespace echo

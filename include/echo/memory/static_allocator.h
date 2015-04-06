@@ -59,7 +59,7 @@ struct StaticAllocator {
 template <class T>
 using SimdStaticAllocator = StaticAllocator<T, ECHO_SIMD_ALIGNMENT>;
 
-}  // end namespcae memory
+}  // namespace memory
 
 /////////////////
 // buffer_type //
@@ -70,7 +70,7 @@ namespace static_allocator_traits {
 template <class StaticAllocator, int NumElements>
 using buffer_type = typename StaticAllocator::template buffer_type<NumElements>;
 
-} // end namesapce static_allocator_traits
+}  // namespace static_allocator_traits
 
 
 }  // end namespace echo
