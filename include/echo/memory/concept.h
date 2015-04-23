@@ -99,20 +99,20 @@ struct AlgorithmIteratorMemcpyableCopy : Concept {
             class DestinationIteratorFirst>
   auto require(
       SourceIteratorFirst&&, SourceIteratorLast&&, DestinationIteratorFirst && )
-      -> list<algorithm_iterator_copy<SourceIteratorFirst, SourceIteratorLast,
-                                      DestinationIteratorFirst>(),
+      -> list<
+          algorithm_iterator_copy<SourceIteratorFirst, SourceIteratorLast,
+                                  DestinationIteratorFirst>(),
 
-              echo::concept::contiguous_iterator<SourceIteratorFirst>(),
-              echo::concept::contiguous_iterator<SourceIteratorLast>(),
-              echo::concept::contiguous_iterator<DestinationIteratorFirst>(),
+          echo::concept::contiguous_iterator<SourceIteratorFirst>(),
+          echo::concept::contiguous_iterator<SourceIteratorLast>(),
+          echo::concept::contiguous_iterator<DestinationIteratorFirst>(),
 
-              same<iterator_traits::value_type<SourceIteratorFirst>,
-                   iterator_traits::value_type<SourceIteratorLast>>(),
-              same<iterator_traits::value_type<SourceIteratorFirst>,
-                   iterator_traits::value_type<DestinationIteratorFirst>>(),
+          same<iterator_traits::value_type<SourceIteratorFirst>,
+               iterator_traits::value_type<SourceIteratorLast>>(),
+          same<iterator_traits::value_type<SourceIteratorFirst>,
+               iterator_traits::value_type<DestinationIteratorFirst>>(),
 
-              std::is_trivially_copyable<
-                  iterator_traits::value_type<SourceIteratorFirst>>::value>;
+          std::is_pod<iterator_traits::value_type<SourceIteratorFirst>>::value>;
 };
 }  // namespace concept
 }  // namespace detail
