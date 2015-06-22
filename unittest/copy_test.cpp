@@ -8,7 +8,7 @@ struct my_memory_backend_tag1 : memory_backend_tag {};
 struct my_memory_backend_tag2 : memory_backend_tag {};
 struct my_memory_backend_tag3 : memory_backend_tag {};
 
-bool was_called1 = false;
+static bool was_called1 = false;
 
 void memcpy(my_memory_backend_tag1, void*, const void*, std::size_t) {
   was_called1 = true;

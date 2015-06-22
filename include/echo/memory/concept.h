@@ -3,7 +3,7 @@
 #include <echo/memory/memory_backend_tag.h>
 #include <echo/memory/static_allocator.h>
 #include <echo/memory/memory_backend_traits.h>
-#include <echo/concept2.h>
+#include <echo/concept.h>
 
 namespace echo {
 namespace memory {

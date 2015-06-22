@@ -2,7 +2,7 @@
 
 #include <echo/memory/memory_backend_tag.h>
 #include <echo/concept/query_type.h>
-#include <echo/concept2.h>
+#include <echo/concept.h>
 
 namespace echo {
 namespace memory_backend_traits {
