@@ -5,10 +5,9 @@
 namespace echo {
 namespace memory {
 
-////////////////////////
-// StaticMemoryBuffer //
-////////////////////////
-
+//------------------------------------------------------------------------------
+// StaticMemoryBuffer
+//------------------------------------------------------------------------------
 template <class T, int NumElements, int Alignment>
 class StaticMemoryBuffer {
   static_assert(NumElements != NumElements,
@@ -45,10 +44,9 @@ MAKE_STATIC_MEMORY_BUFFER(128)
 
 #undef MAKE_STATIC_MEMORY_BUFFER
 
-/////////////////////
-// StaticAllocator //
-/////////////////////
-
+//------------------------------------------------------------------------------
+// StaticAllocator
+//------------------------------------------------------------------------------
 template <class T, int Alignment = 0>
 struct StaticAllocator {
   using value_type = T;
@@ -61,16 +59,14 @@ using SimdStaticAllocator = StaticAllocator<T, ECHO_SIMD_ALIGNMENT>;
 
 }  // namespace memory
 
-/////////////////
-// buffer_type //
-/////////////////
-
+//------------------------------------------------------------------------------
+// buffer_type
+//------------------------------------------------------------------------------
 namespace static_allocator_traits {
 
 template <class StaticAllocator, int NumElements>
 using buffer_type = typename StaticAllocator::template buffer_type<NumElements>;
 
 }  // namespace static_allocator_traits
-
 
 }  // end namespace echo

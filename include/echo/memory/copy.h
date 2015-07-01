@@ -7,10 +7,9 @@
 namespace echo {
 namespace memory {
 
-//////////
-// copy //
-//////////
-
+//------------------------------------------------------------------------------
+// copy
+//------------------------------------------------------------------------------
 // single memory backend
 template <class MemoryBackendTag, class IteratorSourceFirst,
           class IteratorSourceLast, class IteratorDestinationFirst,

@@ -8,6 +8,9 @@
 namespace echo {
 namespace memory {
 
+//------------------------------------------------------------------------------
+// memcpy
+//------------------------------------------------------------------------------
 inline void* memcpy(memory_backend_tag, void* destination, const void* source,
                     std::size_t num) {
   return std::memcpy(destination, source, num);
