@@ -34,7 +34,7 @@ constexpr bool static_allocator() {
 //------------------------------------------------------------------------------
 template <class T>
 constexpr bool memory_backend_tag() {
-  return std::is_base_of<echo::memory::memory_backend_tag, T>();
+  return std::is_convertible<T, echo::memory::memory_backend_tag>();
 }
 
 //------------------------------------------------------------------------------
