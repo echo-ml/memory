@@ -66,7 +66,7 @@ struct AlgorithmIteratorCopy : Concept {
                DestinationIteratorFirst&& destination_first)
       -> list<echo::concept::input_iterator<SourceIteratorFirst>(),
               echo::concept::input_iterator<SourceIteratorLast>(),
-              echo::concept::equality_comparable2<SourceIteratorFirst,
+              echo::concept::equality_comparable<SourceIteratorFirst,
                                                  SourceIteratorLast>(),
               echo::concept::output_iterator<DestinationIteratorFirst>(),
               valid<decltype(*destination_first = *source_first)>()>;
